@@ -1,0 +1,12 @@
+<div class="container">
+  <mat-tab-group>
+    <mat-tab label="Resultado Actual">
+      <app-home (recargarPadre)="recargarHistorial($event)"></app-home>
+    </mat-tab>
+    <mat-tab label="Historial">
+      <ng-container *ngIf="showHistory">
+        <app-history></app-history>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</div>

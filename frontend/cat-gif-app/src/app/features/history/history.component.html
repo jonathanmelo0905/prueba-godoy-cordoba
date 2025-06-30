@@ -1,0 +1,27 @@
+<table mat-table [dataSource]="historial" class="mat-elevation-z8" *ngIf="historial.length">
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let row">{{ row.fecha | date:'short' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fact">
+    <th mat-header-cell *matHeaderCellDef>Cat Fact</th>
+    <td mat-cell *matCellDef="let row">{{ row.fact }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="query">
+    <th mat-header-cell *matHeaderCellDef>Query</th>
+    <td mat-cell *matCellDef="let row">{{ row.query }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="gif">
+    <th mat-header-cell *matHeaderCellDef>GIF</th>
+    <td mat-cell *matCellDef="let row">
+      <img [src]="row.gifUrl" width="80" />
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>
+<app-spinner *ngIf="loading"></app-spinner>

@@ -1,0 +1,48 @@
+.mat-elevation-z8 {
+  width: 100%;
+  /* max-width: 1000px; */
+  height: 500px;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #e0e0e0;
+    color: #333;
+    font-weight: 600;
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  img {
+    max-height: 80px;
+    border-radius: 6px;
+  }
+}
+@media (max-width: 768px) {
+  .mat-elevation-z8 {
+    font-size: 12px;
+  }
+
+  table img {
+    max-width: 60px;
+  }
+}

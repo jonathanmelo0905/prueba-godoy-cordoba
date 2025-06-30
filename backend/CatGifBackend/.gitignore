@@ -1,0 +1,29 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Node (Angular)
+node_modules/
+dist/
+.angular/
+
+# Mac/Windows/Linux system files
+.DS_Store
+Thumbs.db
+
+# EF Core
+*.db
+*.sqlite
+*.bak
+*.mdf
+*.ldf
