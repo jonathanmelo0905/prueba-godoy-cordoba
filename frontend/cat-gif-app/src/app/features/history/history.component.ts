@@ -19,7 +19,6 @@ export class HistoryComponent implements OnInit {
     this.loading = true
     this.historyService.getHistory().subscribe({
       next: res => {
-        console.log(res);
         this.historial = res;
         this.loading = false;
       },

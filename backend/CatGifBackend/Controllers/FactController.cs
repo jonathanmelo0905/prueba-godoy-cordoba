@@ -24,13 +24,11 @@ namespace CatGifBackend.Controllers
         public async Task<ActionResult<GetFactGifDTO>> GetFact()
         {
             var fact = await _catFactService.GetRandomFactAsync();
-            Console.WriteLine("MELO => " + fact);
+
             if (fact == null)return StatusCode(503, "No se pudo obtener el dato del API externo.");
 
-            Console.WriteLine($"MELO => Fact: {fact.Fact}, Query: {fact.Query}, Gif: {fact.GifUrl}");
-
             await _historialService.GuardarBusquedaAsync(fact);
-            if (fact == null) return StatusCode(503, "No se pudo obtener el dato del API externo.");
+
             return Ok(fact);
         }
     }

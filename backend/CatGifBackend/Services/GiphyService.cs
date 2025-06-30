@@ -15,12 +15,19 @@ namespace CatGifBackend.Services
 
         public async Task<string?> GetGifUrlAsync(string query, int offset)
         {
-            Console.WriteLine("Query " + query);
             var url = $"{GiphyBaseUrl}?api_key={ApiKey}&q={Uri.EscapeDataString(query)}&limit=1&offset={offset}";
 
-            var response = await _httpClient.GetFromJsonAsync<GiphyResponse>(url);
+            var response = await _httpClient.GetAsync(url);
 
-            return response?.Data?.FirstOrDefault()?.Images?.Original?.Url;
+            if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+            {
+                return null; // Deja que el controlador maneje la respuesta
+            }
+
+            response.EnsureSuccessStatusCode();
+
+            var giphyResponse = await response.Content.ReadFromJsonAsync<GiphyResponse>();
+            return giphyResponse?.Data?.FirstOrDefault()?.Images?.Original?.Url;
         }
     }
 }

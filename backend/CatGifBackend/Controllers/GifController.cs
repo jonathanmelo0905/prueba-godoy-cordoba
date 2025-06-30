@@ -23,11 +23,11 @@ namespace CatGifBackend.Controllers
             if (string.IsNullOrWhiteSpace(dto.Query))
                 return BadRequest("El parámetro 'query' es obligatorio.");
             if(!dto.Offset.HasValue)return BadRequest("El parámetro 'offset' es obligatorio.");
-            Console.WriteLine("gif viejo" + dto.GifUrl);
+
             var gifUrl = await _giphyService.GetGifUrlAsync(dto.Query, dto.Offset.Value);
-            Console.WriteLine("gif nuevo" + gifUrl);
+
             if (string.IsNullOrEmpty(gifUrl))
-                return NotFound("No se encontró ningún gif para la búsqueda.");
+                return BadRequest("No se encontró ningún GIF para la búsqueda o se excedió el límite de peticiones permitidas.");
 
             dto.GifUrl = gifUrl;
 

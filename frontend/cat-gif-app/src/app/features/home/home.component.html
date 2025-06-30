@@ -1,13 +1,13 @@
 
-<div class="home-container" *ngIf="!isrecargarFact">
+<div class="home-container" *ngIf="!isrecargarFact && !loading">
   <img [src]="fact?.gifUrl" class="gif" *ngIf="fact?.gifUrl" />
   <div class="fact">
     <p>{{ fact?.fact }}</p>
     <button mat-raised-button color="primary" (click)="refreshGif()">Refrescar GIF</button>
   </div>
 </div>
-<div *ngIf="isrecargarFact" class="error-container">
-  <p class="error-message">Ocurrió un error al cargar el GIF. Por favor, intenta recargar.</p>
+<div *ngIf="isrecargarFact && !loading" class="error-container">
+  <p class="error-message">{{mensaje}}</p>
   <button mat-raised-button color="warn" (click)="recargarFact()">Reintentar</button>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

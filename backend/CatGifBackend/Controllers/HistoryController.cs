@@ -19,18 +19,26 @@ namespace CatGifBackend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetHistory()
         {
-            var historial = await _context.Historial_catgif
-                .OrderByDescending(h => h.fecha)
-                .Select(h => new HistorialDTO
-                {
-                    Fecha = h.fecha,
-                    Fact = h.Fact,
-                    Query = h.query_text,
-                    GifUrl = h.gif_url
-                })
-                .ToListAsync();
+            try
+            {
+                var historial = await _context.Historial_catgif
+                    .AsNoTracking()
+                    .OrderByDescending(h => h.fecha)
+                    .Select(h => new HistorialDTO
+                    {
+                        Fecha = h.fecha,
+                        Fact = h.Fact,
+                        Query = h.query_text,
+                        GifUrl = h.gif_url
+                    })
+                    .ToListAsync();
 
-            return Ok(historial);
+                return Ok(historial);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error al obtener el historial.");
+            }
         }
     }
 }

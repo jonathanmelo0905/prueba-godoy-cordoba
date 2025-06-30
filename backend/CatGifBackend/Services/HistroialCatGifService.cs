@@ -32,7 +32,7 @@ namespace CatGifBackend.Services
 
                 return historial;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Aquí podrías loguear el error con ILogger
                 return null;

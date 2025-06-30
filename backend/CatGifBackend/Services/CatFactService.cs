@@ -27,7 +27,12 @@ namespace CatGifBackend.Services
             var query = string.Join(" ", words.Take(3));
 
             // Buscar el gif relacionado
-            string gifUrl = await _giphyService.GetGifUrlAsync(query, 1);
+            string? gifUrl = await _giphyService.GetGifUrlAsync(query, 1);
+
+            if (string.IsNullOrWhiteSpace(gifUrl))
+            {
+                return null;
+            }
 
             // Crear el resultado
             return new GetFactGifDTO

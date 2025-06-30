@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   loading: boolean = true;
   isrecargarFact: boolean = false;
   offset: number = 1;
+  mensaje = "Ocurrió un error al cargar el GIF. Por favor, intenta recargar.";
 
   constructor(
     private catFactService: CatFactService,
@@ -36,14 +37,14 @@ export class HomeComponent implements OnInit {
         this.recargarPadre.emit(false);
       },
       error: (err) => {
-        console.error('Error al obtener el cat fact:', err);
         this.loading = false;
         this.isrecargarFact = true;
+        this.mensaje = "Ocurrió un error al cargar el GIF. Por favor, intenta recargar.";
       }
     });
   }
 
-  recargarFact(){
+  recargarFact() {
     this.getFactAndGif();
     this.isrecargarFact = false;
   }
@@ -62,7 +63,14 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => {
         this.recargarPadre.emit(true);
-        console.error('Error al refrescar el gif:', err);
+        console.log(err.error)
+        this.loading = false;
+        if (typeof err.error === 'string') {
+          this.mensaje = err.error;
+        } else {
+          this.mensaje = 'Ocurrió un error inesperado. Por favor, intenta más tarde.';
+        }
+        this.isrecargarFact = true;
       }
     });
   }
