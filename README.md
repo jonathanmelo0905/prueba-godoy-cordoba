@@ -52,7 +52,7 @@ http://localhost:4200
 ```ts
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7135/api' // puede variar dependiendo del backend
+  apiUrl: 'http://localhost:5268/api' // puede variar dependiendo del backend
 };
 ```
 
@@ -73,10 +73,10 @@ dotnet restore
 dotnet run
 ```
 
-3. La API estará disponible en:
+3. La API estará disponible en (puede variar el puerto):
 
 ```
-https://localhost:7135
+http://localhost:5268
 ```
 
 Puedes probar los endpoints con herramientas como **Postman**, **Insomnia**, o **curl**.
@@ -93,7 +93,7 @@ La aplicación utiliza **MySQL** como motor de base de datos.
 Ejemplo:
 ```json
 "ConnectionStrings": {
-  "basedatos": "Server=localhost;Database=catgif;User Id=root;Password=1234;"
+  "basedatos": "Server=localhost;Database=catgif;User Id=root;Password=1234;" // Ejemplo
 }
 ```
 
